@@ -136,10 +136,9 @@ class TestThreeScaleAuthorize(TestThreeScale):
         if auth.authorize():
             resp = auth.build_auth_response()
             self.assertEquals(resp.get_plan(), plan)
-
+    @httpretty.activate
     def testAuthorizeResponseUsageReport(self):
         """test parsing usage reports"""
-        httpretty.enable()
         xml_body = """<status>
               <authorized>false</authorized>
               <reason>usage limits are exceeded</reason>
@@ -171,7 +170,6 @@ class TestThreeScaleAuthorize(TestThreeScale):
         self.assertEquals(reports[0].get_end_period(), "2010-04-27 00:00:00 +0000")
         self.assertEquals(reports[0].get_max_value(), "50000")
         self.assertEquals(reports[0].get_current_value(), "50002")
-        httpretty.disable()
 
 class TestThreeScaleReport(TestThreeScale):
     """test case for report API call"""

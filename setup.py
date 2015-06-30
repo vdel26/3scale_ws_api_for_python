@@ -9,6 +9,9 @@ setup(
     author_email='support@3scale.net',
     url='http://www.3scale.net',
     license='MIT',
-    py_modules=['ThreeScalePY']
+    py_modules=['ThreeScalePY'],
+    install_requires=[
+      'httpretty==0.8.6'
+    ]
 )
 
